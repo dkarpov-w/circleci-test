@@ -11,9 +11,9 @@ deploy: &deploy
     - add_ssh_keys:
         fingerprints:
           - "83:f4:92:e0:4d:ce:0a:d9:62:0e:99:79:c0:37:9a:0e"
-  #  - run: Tagging
-  #      name: Release this version
-  #      command: ./publish.sh
+    - run:
+          name: Script
+          command: ./publish.sh
 
 workflows:
   version: 2

@@ -1,0 +1,9 @@
+{
+  "name": "hp-common",
+  "version": "0.0.1",
+  "description": "Play with CI config",
+  "repository": {
+    "type": "git",
+    "url": "https://dkarpov-w/circleci-test"
+  }
+}

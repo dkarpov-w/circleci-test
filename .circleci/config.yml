@@ -1,0 +1,66 @@
+version: 2.1
+executors:
+  my_executor:
+    docker:
+      - image: cimg/node:16.15
+
+deploy-to-aws: &deploy-to-aws
+  executor: my_executor
+  steps:
+    - checkout
+  #  - run: Tagging
+  #      name: Release this version
+  #      command: ./publish.sh
+
+workflows:
+  version: 2
+  deploy-to-aws:
+    jobs:
+      - deploy-to-aws-sandbox:
+          context: sandbox-context
+          filters:
+            branches:
+              only:
+                - sandbox
+      - deploy-to-aws-prod:
+          context: production-context
+          filters:
+            branches:
+              only:
+                - master
+
+jobs:
+  deploy-to-aws-sandbox:
+    <<: *deploy-to-aws
+
+  deploy-to-aws-prod:
+    <<: *deploy-to-aws
+
+  deploy-to-aws-development:
+    <<: *deploy-to-aws
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

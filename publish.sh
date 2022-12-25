@@ -26,24 +26,10 @@ $COMMIT_NOTE"
 git config user.email "CircleCI@mydomain.com"
 git config user.name "CircleCI deploy"
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-echo "Package version -> $PACKAGE_VERSION"
-echo "Message -> $COMMIT_MESSAGE"
-=======
 echo "Package version --> $PACKAGE_VERSION"
 echo "-------------"
 echo "Message --> $TAG_ANNOTATION"
 echo "-------------"
->>>>>>> main
-git tag $PACKAGE_VERSION -m "$COMMIT_MESSAGE"
-=======
-echo "Package version --> $PACKAGE_VERSION"
-echo "-------------"
-echo "Message --> $TAG_ANNOTATION"
-echo "-------------"
-git tag $PACKAGE_VERSION -m "$TAG_ANNOTATION"
->>>>>>> Stashed changes
 
-echo "Publishing version $PACKAGE_VERSION"
+git tag $PACKAGE_VERSION -m "$TAG_ANNOTATION"
 git push origin $PACKAGE_VERSION

@@ -1,12 +1,19 @@
+# exit when any command fails
+set -e
+
+# get from package.json -> "version"
 PACKAGE_VERSION=$(cat package.json \
   | grep version \
   | head -1 \
   | awk -F: '{ print $2 }' \
   | sed 's/[",]//g')
 
-echo "Package version is $PACKAGE_VERSION"
-git tag $PACKAGE_VERSION
+# latest commit message
+COMMIT_MESSAGE=$(git log -1 --format=%s)
+
+echo "Package version -> $PACKAGE_VERSION"
+echo "Message -> $COMMIT_MESSAGE"
+git tag $PACKAGE_VERSION -m "$COMMIT_MESSAGE"
 
 echo "Publishing version $PACKAGE_VERSION"
 git push origin $PACKAGE_VERSION
-

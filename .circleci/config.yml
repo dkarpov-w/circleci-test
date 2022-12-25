@@ -4,7 +4,7 @@ executors:
     docker:
       - image: cimg/node:16.15
 
-deploy-to-aws: &deploy-to-aws
+deploy: &deploy
   executor: my_executor
   steps:
     - checkout
@@ -19,28 +19,15 @@ workflows:
   version: 2
   deploy-to-aws:
     jobs:
-      - deploy-to-aws-sandbox:
-          context: sandbox-context
+      - do:
           filters:
             branches:
               only:
-                - sandbox
-      - deploy-to-aws-prod:
-          context: production-context
-          filters:
-            branches:
-              only:
-                - master
+                - main
 
 jobs:
-  deploy-to-aws-sandbox:
-    <<: *deploy-to-aws
-
-  deploy-to-aws-prod:
-    <<: *deploy-to-aws
-
-  deploy-to-aws-development:
-    <<: *deploy-to-aws
+  do:
+    <<: *deploy
 
 
 

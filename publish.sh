@@ -30,7 +30,6 @@ echo "Package version --> $PACKAGE_VERSION"
 echo "-------------"
 echo "Message --> $TAG_ANNOTATION"
 echo "-------------"
-git tag $PACKAGE_VERSION -m "$COMMIT_MESSAGE"
 
-echo "Publishing version $PACKAGE_VERSION"
+git tag $PACKAGE_VERSION -m "$TAG_ANNOTATION"
 git push origin $PACKAGE_VERSION
